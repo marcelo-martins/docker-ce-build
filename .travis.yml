@@ -29,6 +29,8 @@ script:
   - cd ../../../
   - ls components/packaging/deb/debbuild/
   - ls components/packaging/rpm/rpmbuild/RPMS/ppc64le/
+  - sudo apt update
+  - sudo apt install -y lftp
   - ${TRAVIS_BUILD_DIR}/ftp_upload.sh 'components/packaging/deb/debbuild/' '/ppc64el/docker/deb'
   - ${TRAVIS_BUILD_DIR}/ftp_upload.sh 'components/packaging/rpm/rpmbuild/RPMS/ppc64le/' '/ppc64el/docker/rpm'
 
