@@ -1,0 +1,25 @@
+language: bash
+
+os: linux-ppc64le
+
+sudo: required
+
+services: docker
+
+script:
+  - git clone https://github.com/Unicamp-OpenPower/docker-ce
+  - cd ./docker-ce
+  - git checkout -t v18.06.2-ce-ppc64le
+  - git config --local user.name "Unicamp OpenPower Lab"
+  - git config --local user.email "openpower@ic.unicamp.br" 
+  - export TRAVIS_TAG=${TRAVIS_TAG:-$(date +'%Y%m%d%H%M%S')-$(git log --format=%h -1)}
+  - git tag $TRAVIS_TAG
+  - cd components/packaging/rpm
+  - VERSION=18.06.2-ce make centos
+  - cd ../../../
+  - cd components/packaging/deb
+  - VERSION=18.06.2-ce make ubuntu-xenial
+  - VERSION=18.06.2-ce make ubuntu-bionic 
+  - cd ../../../
+  - ls components/packaging/deb/debbuild/
+  - ls components/packaging/rpm/rpmbuild/RPMS/ppc64le/
