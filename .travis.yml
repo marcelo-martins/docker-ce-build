@@ -9,6 +9,6 @@ script:
   - VERSION=current make centos
   - cd ../../../
   - cd components/packaging/deb
-  - VERSION=current make ubuntu-xenial
-  - VERSION=current make ubuntu-bionic 
-  - VERSION=current make debian-stretch
+  - VERSION=18.09.4 make ubuntu-xenial
+  - VERSION=18.09.4 make ubuntu-bionic 
+  - VERSION=18.09.4 make debian-stretch
