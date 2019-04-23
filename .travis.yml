@@ -1,14 +1,15 @@
-language: bash
+matrix:
+  include:
+  - env: sys=debian-stretch dir=docker-ce/components/packaging/deb
+  - env: sys=ubuntu-xenial dir=docker-ce/components/packaging/deb
+  - env: sys=ubuntu-bionic dir=docker-ce/components/packaging/deb
+  - env: sys=centos dir=docker-ce/components/packaging/rpm
+
 os: linux-ppc64le
 sudo: required
 services: docker
 
 script:
-  - git clone https://github.com/docker/docker-ce
-  - cd docker-ce/components/packaging/rpm
-  - VERSION=current make centos
-  - cd ../../../
-  - cd components/packaging/deb
-  - VERSION=18.09.4 make ubuntu-xenial
-  - VERSION=18.09.4 make ubuntu-bionic 
-  - VERSION=18.09.4 make debian-stretch
+   - git clone https://github.com/docker/docker-ce
+   - cd $dir
+   - VERSION=$github_version make $sys
