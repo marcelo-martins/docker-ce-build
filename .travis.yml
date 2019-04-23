@@ -12,4 +12,4 @@ services: docker
 script:
    - git clone https://github.com/docker/docker-ce
    - cd $dir
-   - VERSION=$github_version make $sys
+   - VERSION=1 make $sys
