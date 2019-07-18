@@ -11,5 +11,6 @@ services: docker
 
 script:
    - git clone https://github.com/docker/docker-ce
+   - cd docker-ce && git apply --3way ../patches/* && cd ../
    - cd $dir
    - VERSION=1 make $sys
