@@ -1,10 +1,10 @@
 matrix:
   include:
-  - env: sys=debian-stretch dir=docker-ce/components/packaging/deb ftp_dir=deb local_dir=components/packaging/deb/debbuild/
-  - env: sys=ubuntu-xenial dir=docker-ce/components/packaging/deb ftp_dir=deb local_dir=components/packaging/deb/debbuild/
-  - env: sys=ubuntu-bionic dir=docker-ce/components/packaging/deb ftp_dir=deb local_dir=components/packaging/deb/debbuild/
-  - env: sys=centos dir=docker-ce/components/packaging/rpm ftp_dir=rpm local_dir=components/packaging/rpm/rpmbuild/RPMS/ppc64le/
-
+  - env: sys=debian-stretch dir=docker-ce/components/packaging/deb ftp_dir=deb
+  - env: sys=ubuntu-xenial dir=docker-ce/components/packaging/deb ftp_dir=deb
+  - env: sys=ubuntu-bionic dir=docker-ce/components/packaging/deb ftp_dir=deb
+  - env: sys=centos dir=docker-ce/components/packaging/rpm ftp_dir=rpm
+  
 os: linux-ppc64le
 sudo: required
 services: docker
@@ -15,4 +15,4 @@ script:
    - cd docker-ce && git apply --3way ../patches/* && cd ../
    - cd $dir
    - VERSION=1 make $sys
-   - lftp -c "open -u $USER,$PASS ftp://oplab9.parqtec.unicamp.br; mirror -R  $local_dir /ppc64el/docker/Containerd/$ftp_dir/"
+   - lftp -c "open -u $USER,$PASS ftp://oplab9.parqtec.unicamp.br; mirror -R ./ /ppc64el/docker/Containerd/$ftp_dir/"
