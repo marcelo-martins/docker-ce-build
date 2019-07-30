@@ -1,9 +1,9 @@
 matrix:
   include:
-  - env: sys=debian-stretch dir=docker-ce/components/packaging/deb ftp_dir=deb
-  - env: sys=ubuntu-xenial dir=docker-ce/components/packaging/deb ftp_dir=deb
-  - env: sys=ubuntu-bionic dir=docker-ce/components/packaging/deb ftp_dir=deb
-  - env: sys=centos dir=docker-ce/components/packaging/rpm ftp_dir=rpm
+  - env: sys=debian-stretch dir=docker-ce/components/packaging/deb ftp_dir=deb bin_dir=docker-ce/components/packaging/debbuild
+  - env: sys=ubuntu-xenial dir=docker-ce/components/packaging/deb ftp_dir=deb bin_dir=docker-ce/components/packaging/debbuild
+  - env: sys=ubuntu-bionic dir=docker-ce/components/packaging/deb ftp_dir=deb bin_dir=docker-ce/components/packaging/debbuild
+  - env: sys=centos dir=docker-ce/components/packaging/rpm ftp_dir=rpm bin_dir=docker-ce/components/packaging/rpm/rpmbuild/RPMS/ppc64le
   
 os: linux-ppc64le
 sudo: required
@@ -13,6 +13,6 @@ script:
    - sudo apt install -y lftp
    - git clone https://github.com/docker/docker-ce
    - cd docker-ce && git apply --3way ../patches/* && cd ../
-   - cd $dir
+   - cd $bin_dir
    - VERSION=1 make $sys
    - lftp -c "open -u $USER,$PASS ftp://oplab9.parqtec.unicamp.br; mirror -R ./ /ppc64el/docker/Containerd/$ftp_dir/"
