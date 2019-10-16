@@ -13,8 +13,8 @@ script:
    - sudo apt install -y lftp
   #  - git clone https://github.com/docker/docker-ce
    - wget https://github.com/docker/docker-ce/archive/v19.03.3.zip
-   - unzip v$github_version.zip
-   - mv docker-ce-$github_version docker-ce
+   - unzip v19.03.3.zip
+   - mv docker-ce-19.03.3 docker-ce
    - cd docker-ce && git apply --3way ../patches/*
    - cd $dir
    - make $sys
