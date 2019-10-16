@@ -11,7 +11,10 @@ services: docker
 
 script:
    - sudo apt install -y lftp
-   - git clone https://github.com/docker/docker-ce
+  #  - git clone https://github.com/docker/docker-ce
+   - wget https://github.com/docker/docker-ce/archive/v$github_version.zip
+   - unzip v$github_version.zip
+   - mv docker-ce-$github_version docker-ce
    - cd docker-ce && git apply --3way ../patches/*
    - cd $dir
    - make $sys
