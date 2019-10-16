@@ -17,4 +17,4 @@ script:
    - make $sys
    - cd ../../../
    - cd $bin_dir
-   - lftp -c "open -u $USER,$PASS ftp://oplab9.parqtec.unicamp.br; mirror -R ./ /ppc64el/docker/Containerd/$ftp_dir/"
+  #  - lftp -c "open -u $USER,$PASS ftp://oplab9.parqtec.unicamp.br; mirror -R ./ /ppc64el/docker/Containerd/$ftp_dir/"
