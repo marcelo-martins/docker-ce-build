@@ -17,7 +17,7 @@ script:
    - mv docker-ce-19.03.3 docker-ce
    - cd docker-ce && git apply --3way ../patches/*
    - cd $dir
-   - VERSION=19.03.3 make $sys
+   - VERSION="19.03.3" make $sys
    - cd ../../../
    - cd $bin_dir
   #  - lftp -c "open -u $USER,$PASS ftp://oplab9.parqtec.unicamp.br; mirror -R ./ /ppc64el/docker/Containerd/$ftp_dir/"
